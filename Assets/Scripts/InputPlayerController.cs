@@ -1,11 +1,16 @@
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class InputPlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
-    public float rotationSpeed = 100.0f;    
+    public float rotationSpeed = 100.0f;
 
-    // Handle rotation of camera based on keyboard input (Vertical-Horizontal axis)
+    void Start()
+    {
+        Camera.main.GetComponent<MoveCamera>().enabled = false;
+        Debug.LogWarning("InputPlayerController activated: Camera movement disabled");
+    }
+
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
