@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -13,21 +15,18 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
        ball = GameObject.Find("Ball");
+        playerRb.isKinematic = false;
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         v = ball.transform.position - (transform.position);
         v.y = 0;
         v = v.normalized;
-        playerRb.AddForce((ball.transform.position - transform.position).normalized * speed);
+        playerRb.AddForce(v * speed);
 
-        if (targetGoal != null)
-        {
-
-        }
-
+       
     }
 }
